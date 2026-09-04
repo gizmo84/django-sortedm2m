@@ -10,7 +10,7 @@ from django.utils.encoding import force_str
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 
-from .forms import SortedMultipleChoiceField
+from .forms import SortedCheckboxMultipleChoiceField
 
 SORT_VALUE_FIELD_NAME = 'sort_value'
 
@@ -295,7 +295,7 @@ class SortedManyToManyField(_ManyToManyField):
     def formfield(self, **kwargs):  # pylint: disable=arguments-differ
         defaults = {}
         if self.sorted:
-            defaults['form_class'] = SortedMultipleChoiceField
+            defaults['form_class'] = SortedCheckboxMultipleChoiceField
         defaults.update(kwargs)
         return super().formfield(**defaults)
 
