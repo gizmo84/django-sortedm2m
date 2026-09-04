@@ -14,6 +14,13 @@
     margin: 0 0 0 4px;
 }
 
+.sortedm2m-container .search-label-icon {
+    background: url("../admin/img/search.svg") 0 0 no-repeat;
+    display: inline-block;
+    height: 1.125rem;
+    width: 1.125rem;
+}
+
 ul.sortedm2m {
     display: block;
     width: 554px;

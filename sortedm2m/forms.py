@@ -73,7 +73,11 @@ class SortedCheckboxSelectMultiple(forms.CheckboxSelectMultiple):
 
         html = render_to_string(
             'sortedm2m/sorted_checkbox_select_multiple_widget.html',
-            {'selected': selected, 'unselected': unselected})
+            {
+                'field_name': getattr(getattr(self.choices, 'field', None), 'label', None) or name,
+                'selected': selected,
+                'unselected': unselected,
+            })
         return mark_safe(html)
 
     def value_from_datadict(self, data, files, name):

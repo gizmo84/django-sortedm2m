@@ -1,9 +1,9 @@
-{% load i18n static %}
+{% load i18n %}
 
 <div class="sortedm2m-container">
 
     <p class="selector-filter">
-        <img src="{% static "sortedm2m/selector-search.gif" %}" alt="" title="{% trans "Type into this box to filter down the list." %}" />
+        <span class="help-tooltip search-label-icon" aria-label="{% blocktranslate %}Type into this box to filter down the list of available {{ field_name }}.{% endblocktranslate %}"></span>
         <input type="text" placeholder="{% trans "Filter" %}" />
     </p>
     <ul class="sortedm2m-items">

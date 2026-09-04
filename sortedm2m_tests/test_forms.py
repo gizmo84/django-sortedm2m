@@ -1,6 +1,7 @@
 from django import forms
 from django.test import TestCase
 from django.utils.encoding import force_str
+from django.utils.translation import override
 
 from sortedm2m.forms import SortedCheckboxMultipleChoiceField, SortedMultipleChoiceField
 
@@ -108,6 +109,31 @@ class TestSortedFormField(TestCase):  # pylint: disable=too-many-instance-attrib
         form = SortedForm(prefix='hacking"><a href="TRAP">')
         rendered = force_str(form['values'])
         self.assertTrue(' id="id_hacking&quot;&gt;&lt;a href=&quot;TRAP&quot;&gt;-values_0"' in rendered)
+
+    def test_search_uses_django_admin_icon_and_text(self):
+        form = SortedForm()
+        rendered = force_str(form['values'])
+        self.assertIn(
+            '<span class="help-tooltip search-label-icon" '
+            'aria-label="Type into this box to filter down the list of available values."></span>',
+            rendered,
+        )
+        self.assertNotIn('selector-search.gif', rendered)
+
+        class ClusterForm(forms.Form):
+            clusters = SortedCheckboxMultipleChoiceField(
+                queryset=Book.objects.all(),
+                label='Cluster',
+                required=False,
+            )
+
+        with override('de'):
+            rendered = force_str(ClusterForm()['clusters'])
+        self.assertIn(
+            'aria-label="Durch Eingabe in diesem Feld lässt sich die Liste der '
+            'verfügbaren Cluster eingrenzen."',
+            rendered,
+        )
 
     def test_form_field_detects_reordering(self):
         form = SortedForm({'values': '{a.pk},{b.pk}'.format(a=self.a, b=self.b)})

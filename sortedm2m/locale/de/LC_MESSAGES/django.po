@@ -19,8 +19,9 @@ msgstr ""
 "X-Generator: Poedit 2.2.4\n"
 
 #: templates/sortedm2m/sorted_checkbox_select_multiple_widget.html:5
-msgid "Type into this box to filter down the list."
-msgstr "Tippen Sie in die Box um die Liste zu filtern."
+#, python-format
+msgid "Type into this box to filter down the list of available %(field_name)s."
+msgstr "Durch Eingabe in diesem Feld lässt sich die Liste der verfügbaren %(field_name)s eingrenzen."
 
 #: templates/sortedm2m/sorted_checkbox_select_multiple_widget.html:6
 msgid "Filter"

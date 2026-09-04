@@ -18,8 +18,9 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #: templates/sortedm2m/sorted_checkbox_select_multiple_widget.html:5
-msgid "Type into this box to filter down the list."
-msgstr "Psaním filtrujete položky."
+#, python-format
+msgid "Type into this box to filter down the list of available %(field_name)s."
+msgstr "Psaním do tohoto pole filtrujete seznam dostupných položek %(field_name)s."
 
 #: templates/sortedm2m/sorted_checkbox_select_multiple_widget.html:6
 msgid "Filter"
