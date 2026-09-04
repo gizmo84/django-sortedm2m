@@ -49,7 +49,7 @@ class OrderedAutocomplete(AutocompleteSelectMultiple):
     class Media:
         extra = "" if settings.DEBUG else ".min"
         lang = translation.get_language()
-        js = ( 
+        js = (
             "admin/js/vendor/jquery/jquery%s.js" % extra,
             "admin/js/vendor/select2/select2.full%s.js" % extra,
         ) + (
