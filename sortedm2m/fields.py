@@ -73,7 +73,8 @@ def create_sorted_many_related_manager(superclass, rel, *args, **kwargs):
         set.alters_data = True
 
         def _add_items(
-            self, source_field_name, target_field_name, *objs, through_defaults=None
+            self, source_field_name, target_field_name, *objs,
+            through_defaults=None, using=None, raw=False
         ):
             # source_field_name: the PK fieldname in join table for the source object
             # target_field_name: the PK fieldname in join table for the target object
@@ -112,7 +113,7 @@ def create_sorted_many_related_manager(superclass, rel, *args, **kwargs):
                 else:
                     new_ids.append(obj)
 
-            db = router.db_for_write(self.through, instance=self.instance)
+            db = using or router.db_for_write(self.through, instance=self.instance)
             manager = self.through._default_manager.using(db)  # pylint: disable=protected-access
             vals = (self.through._default_manager.using(db)  # pylint: disable=protected-access
                     .values_list(target_field_name, flat=True)
@@ -135,7 +136,7 @@ def create_sorted_many_related_manager(superclass, rel, *args, **kwargs):
                     signals.m2m_changed.send(
                         sender=self.through, action='pre_add',
                         instance=self.instance, reverse=self.reverse,
-                        model=self.model, pk_set=new_ids_set, using=db,
+                        model=self.model, pk_set=new_ids_set, using=db, raw=raw,
                     )
 
                 rel_source_fk = self.related_val[0]
@@ -164,7 +165,7 @@ def create_sorted_many_related_manager(superclass, rel, *args, **kwargs):
                     signals.m2m_changed.send(
                         sender=self.through, action='post_add',
                         instance=self.instance, reverse=self.reverse,
-                        model=self.model, pk_set=new_ids_set, using=db,
+                        model=self.model, pk_set=new_ids_set, using=db, raw=raw,
                     )
 
     return SortedRelatedManager
