@@ -4,19 +4,24 @@
 }
 
 .sortedm2m-container p.selector-filter {
+    align-items: center;
+    display: flex;
+    gap: 8px;
     width: 570px;
     padding: 0;
     margin: 0;
 }
 
 .sortedm2m-container p.selector-filter input {
-    width: 532px;
-    margin: 0 0 0 4px;
+    flex-grow: 1;
+    margin: 0;
+    min-width: 0;
 }
 
 .sortedm2m-container .search-label-icon {
     background: url("../admin/img/search.svg") 0 0 no-repeat;
     display: inline-block;
+    flex: 0 0 1.125rem;
     height: 1.125rem;
     width: 1.125rem;
 }

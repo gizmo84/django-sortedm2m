@@ -115,7 +115,8 @@ class TestSortedFormField(TestCase):  # pylint: disable=too-many-instance-attrib
         rendered = force_str(form['values'])
         self.assertIn(
             '<span class="help-tooltip search-label-icon" '
-            'aria-label="Type into this box to filter down the list of available values."></span>',
+            'aria-label="Type into this box to filter down the list of available values."></span>'
+            '<input type="text" placeholder="Filter" />',
             rendered,
         )
         self.assertNotIn('selector-search.gif', rendered)
