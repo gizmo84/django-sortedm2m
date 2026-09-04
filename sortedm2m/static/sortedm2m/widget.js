@@ -109,9 +109,12 @@ if (typeof jQuery === 'undefined') {
         }
 
         function windowname_to_id(text) {
-            // django32 has removed windowname_to_id function.
+            // django32 has removed windowname_to_id function. Modern Django
+            // also appends a popup index (for example, "__1") to the window
+            // name, which isn't part of the originating field's ID.
             text = text.replace(/__dot__/g, '.');
             text = text.replace(/__dash__/g, '-');
+            text = text.replace(/__\d+$/, '');
             return text;
         }
 
