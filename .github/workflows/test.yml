@@ -59,10 +59,10 @@ jobs:
         - 3306:3306
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v7.0.1
 
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v7.0.0
       with:
         python-version: ${{ matrix.python-version }}
 
@@ -72,7 +72,7 @@ jobs:
         echo "::set-output name=dir::$(pip cache dir)"
 
     - name: Cache
-      uses: actions/cache@v3
+      uses: actions/cache@v6.1.0
       with:
         path: ${{ steps.pip-cache.outputs.dir }}
         key:
@@ -92,7 +92,7 @@ jobs:
         DJANGO: ${{ matrix.django-version }}
 
     - name: Upload coverage
-      uses: codecov/codecov-action@v2
+      uses: codecov/codecov-action@v7.0.0
       with:
         name: Python ${{ matrix.python-version }}
 
@@ -105,8 +105,8 @@ jobs:
         tox-env: ['quality', 'dist-validation']
 
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-python@v3
+    - uses: actions/checkout@v7.0.1
+    - uses: actions/setup-python@v7.0.0
 
     - name: Install dependencies
       run: |
