@@ -1,7 +1,8 @@
 from django import forms
 from django.conf import settings
-from django.utils import translation
 from django.contrib.admin.widgets import AutocompleteSelectMultiple
+from django.utils import translation
+
 
 class OrderedAutocomplete(AutocompleteSelectMultiple):
     def optgroups(self, name, value, attr=None):
